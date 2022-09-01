@@ -1,7 +1,7 @@
 from Modulos import skills as sk
 
 class Pokemon():
-    def __init__(self, name, hp, attack, defense, element, scream, mov1, mov2 = None, mov3 = None, mov4 = None ):
+    def __init__(self, name, hp, attack, defense, element, scream, mov1 = 'Vacio', mov2 = 'Vacio', mov3 = 'Vacio', mov4 = 'Vacio' ):
         self.name = name
         self.hp = hp
         self.attack = attack
