@@ -1,27 +1,33 @@
-import os
-from Modulos import pokemons as pokes
+import os, time
+from Modulos import objects as obj
 
 def electionPokemon(nameTrainer):
+    
+    os.system('cls')
+
     trainer = ''
     while trainer == '':
 
-        print('\n')
-        print('\t\t**************************************************')
-        print('\t\t* SELECCIONE UNO DE ESTOS POKEMONS POR SU NUMERO *')
-        print('\t\t**************************************************\n')
+        print('\n\n\n\n\n')
+        print('\n\n')
+        print('\t\t\t\t     **************************************************')
+        print('\t\t\t\t     * SELECCIONE UNO DE ESTOS POKEMONS POR SU NUMERO *')
+        print('\t\t\t\t     **************************************************\n')
 
-        for p in pokes.pokemonsText:
-            index = pokes.pokemonsText.index(p)
-            print(f'\t\t{index + 1}.- {p}')
+        for p in obj.pokemons:
+            index = obj.pokemons.index(p)
+            print(f'\t\t\t\t     {index + 1}.- {p.name}')
 
-        trainer = input(f'{nameTrainer}: ')
+        trainer = input(f'\n\n\t\t\t\t     {nameTrainer}: ')
         os.system('cls')
-            
+        
+        
+        print('\n\n\n\n\n')
         print(f'{nameTrainer}:\n')
         if trainer == '':
             print('No ha elegido un pokemon')
             print('Tendra que repetir la eleccion')
-        elif int(trainer) - 1 not in range(len(pokes.pokemonsText)):
+        elif int(trainer) - 1 not in range(len(obj.pokemons)):
             print('Su pokemon no fue encontrado')
             print('Tendra que elegir nuevamente')
             trainer = ''
@@ -29,47 +35,62 @@ def electionPokemon(nameTrainer):
             print('Su pokemon fue encontrado')
             trainer = int(trainer)
             trainer -= 1
-            trainer = pokes.pokemonsObject[trainer]
+            trainer = obj.pokemons[trainer]
         
     
     os.system('cls')
     return trainer
 
-def electionAttack(skillsPokemon):
+def electionAttack(trainerPokemon):
 
     skillsPokeList = [
-        skillsPokemon.mov1,
-        skillsPokemon.mov2,
-        skillsPokemon.mov3,
-        skillsPokemon.mov4
+        trainerPokemon.pokemon.mov1,
+        trainerPokemon.pokemon.mov2,
+        trainerPokemon.pokemon.mov3,
+        trainerPokemon.pokemon.mov4
     ]
 
     while True:
-        print('Skills del Pokemon: \n')
+
+        os.system('cls')
+        
+        print('\n\n\n\n\n')
+        print(f'\t\t\t\t\t\t  Turno de {trainerPokemon.name}')
+
+        print('\n\n\n\n\n')
+        print('\n\t\t\t\t\t     Skills del Pokemon: \n')
         for s in skillsPokeList:
             index = skillsPokeList.index(s)
             if s == 'Vacio':
-                print(f'\t\t{index + 1}.- {s}')
+                print(f'\t\t\t\t\t\t      {index + 1}.- {s}')
             else:
-                print(f'\t\t{index + 1}.- {s.name}')
+                print(f'\t\t\t\t\t\t      {index + 1}.- {s.name}')
 
-        skillElected = input('\nElija la Skill a usar: ')
+        skillElected = input('\n\t\t\t\t\t     Elija la Skill a usar: ')
 
         match skillElected:
-            case '1': skillElected = skillsPokemon.mov1
-            case '2': skillElected = skillsPokemon.mov2
-            case '3': skillElected = skillsPokemon.mov3
-            case '4': skillElected = skillsPokemon.mov4
+            case '1': skillElected = skillsPokeList[0]
+            case '2': skillElected = skillsPokeList[1]
+            case '3': skillElected = skillsPokeList[2]
+            case '4': skillElected = skillsPokeList[3]
             case _: skillElected = 'Casilla Inexistente'
 
         os.system('cls')
-
+        
+        print('\n\n\n\n\n')
+        print('\n\n\n')
         if skillElected == 'Vacio':
-            print('\nLa casilla escogida esta vacia.')
-            print('Debera volver a elegir.\n')
+            print('\n\t\t\t\t\t     La casilla escogida esta vacia.')
+            print('\t\t\t\t\t     Debera volver a elegir.\n')
+            time.sleep(2)
         elif skillElected == 'Casilla Inexistente':
-            print('\nLa casilla no existe.')
-            print('Debera vovler a elegir.\n')
+            print('\n\t\t\t\t\t     La casilla no existe.')
+            print('\t\t\t\t\t     Debera vovler a elegir.\n')
+            time.sleep(2)
         else:
-            print('\nSkill Encontrado, el pokemon atacara\n')
+            os.system('cls')
+            print('\n\n\n\n\n')
+            print('\n\n')
+            print('\n\t\t\t\t\t     Skill Encontrado, el pokemon atacara\n')
+            return skillElected
             break
