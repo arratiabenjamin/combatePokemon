@@ -52,7 +52,9 @@ def app():
         print('\n\n\n\n\n')
         print('\n\n\n\n\n')
         print('\t\t\tMuchas gracias por probar mi Combate Pokemon :D')
-    except:
+        
+    #Excepcion de interrupcion de tecla por ejemplo: ctrl+z
+    except KeyboardInterrupt:
         time.sleep(1)
         os.system('cls')
         print('\n\n\n\n\n')

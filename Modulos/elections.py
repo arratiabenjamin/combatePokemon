@@ -1,11 +1,14 @@
 import os, time
 from Modulos import objects as obj
 
+#Eleccion de Pokemon
 def electionPokemon(nameTrainer):
     
     os.system('cls')
 
     trainer = ''
+
+    #Bucle hasta que se elijan los pokemons
     while trainer == '':
 
         print('\n\n\n\n\n')
@@ -14,6 +17,7 @@ def electionPokemon(nameTrainer):
         print('\t\t\t\t     * SELECCIONE UNO DE ESTOS POKEMONS POR SU NUMERO *')
         print('\t\t\t\t     **************************************************\n')
 
+        #Iteracion para mostrar cada pokemon
         for p in obj.pokemons:
             index = obj.pokemons.index(p)
             print(f'\t\t\t\t     {index + 1}.- {p.name}')
@@ -24,6 +28,8 @@ def electionPokemon(nameTrainer):
         
         print('\n\n\n\n\n')
         print(f'{nameTrainer}:\n')
+
+        #Comprobacion de eleccion
         if trainer == '':
             print('No ha elegido un pokemon')
             print('Tendra que repetir la eleccion')
@@ -41,8 +47,10 @@ def electionPokemon(nameTrainer):
     os.system('cls')
     return trainer
 
+#Eleccion de Ataque
 def electionAttack(trainerPokemon):
 
+    #Lista con skills pokemon atacante
     skillsPokeList = [
         trainerPokemon.pokemon.mov1,
         trainerPokemon.pokemon.mov2,
@@ -50,6 +58,7 @@ def electionAttack(trainerPokemon):
         trainerPokemon.pokemon.mov4
     ]
 
+    #Bucle de eleccion de ataque
     while True:
 
         os.system('cls')
@@ -59,6 +68,8 @@ def electionAttack(trainerPokemon):
 
         print('\n\n\n\n\n')
         print('\n\t\t\t\t\t     Skills del Pokemon: \n')
+
+        #Iteracion para muestra de skills
         for s in skillsPokeList:
             index = skillsPokeList.index(s)
             if s == 'Vacio':
@@ -68,6 +79,7 @@ def electionAttack(trainerPokemon):
 
         skillElected = input('\n\t\t\t\t\t     Elija la Skill a usar: ')
 
+        #Segun la eleccion el valor dado a skillElected
         match skillElected:
             case '1': skillElected = skillsPokeList[0]
             case '2': skillElected = skillsPokeList[1]
@@ -79,6 +91,8 @@ def electionAttack(trainerPokemon):
         
         print('\n\n\n\n\n')
         print('\n\n\n')
+        
+        #Mensaje para cada tipo de eleccion
         if skillElected == 'Vacio':
             print('\n\t\t\t\t\t     La casilla escogida esta vacia.')
             print('\t\t\t\t\t     Debera volver a elegir.\n')
@@ -93,4 +107,4 @@ def electionAttack(trainerPokemon):
             print('\n\n')
             print('\n\t\t\t\t\t     Skill Encontrado, el pokemon atacara\n')
             return skillElected
-            break
+    
