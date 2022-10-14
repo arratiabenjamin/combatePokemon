@@ -3,7 +3,7 @@ En esta version ya existen los elementos por lo que la formula de ataque es mas 
 importantes como la posibilidad de que el ataque sea critico para ser mas parecida a la del pokemon, ahora cada jugador tendra asignado
 su nombre y por ultimo el primer pokemon en atacar sera el con mayor velocidad en stats.
 
-[Link Repositorio](https://github.com/arratiabenjamin/combatePokemon/commit/ac6804db4bbc8c9899f4c97ec385a3796f694fd6)
+[Link Repositorio](https://github.com/arratiabenjamin/combatePokemon/tree/ac6804db4bbc8c9899f4c97ec385a3796f694fd6)
 
 ## Implementaciones
       ° Clase Elements.
