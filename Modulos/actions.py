@@ -2,6 +2,7 @@ from random import randint, choices
 from Modulos import elections as elects
 import time, os
 
+
 #Generador de formula
 def genFormulation(trainerAttacking, trainerAttacked):
 
@@ -11,7 +12,12 @@ def genFormulation(trainerAttacking, trainerAttacked):
     pokemonAttacked = trainerAttacked.pokemon
 
     #Atks
-    atkPokemon = elects.electionAttack(trainerAttacking)
+    atkPokemon = elects.attack(trainerAttacking, trainerAttacked)
+
+    #SI LLEGA A TENER DE VALOR 'Volver al Menu' SE RETORNARÁ LO SIGUIENTE Y NO UN NUMERO.
+    if atkPokemon == 'Volver al Menu':
+        return atkPokemon, 0, 0
+
     atkPokemonElement = atkPokemon.element
     atkVeryEffective = atkPokemonElement.veryEffective
     atkIneffectual = atkPokemonElement.ineffectual
@@ -69,6 +75,9 @@ def attack(trainerAttacking, trainerAttacked):
     
     #Variable total de ataque - Chance de critico - Effecto del elemento 1
     totalAttack, CH, effectElement1 = genFormulation(trainerAttacking, trainerAttacked)
+
+    if totalAttack == 'Volver al Menu':
+        return totalAttack
     
     #Muestra de eficacia
     if effectElement1 == 0:
@@ -107,3 +116,34 @@ def attack(trainerAttacking, trainerAttacked):
     
     return trainerAttacked.pokemon.hp
 
+#Efecto de Objeto en Pokemon
+def effectPotion(pokemon, potion):
+    
+    os.system('cls')
+    print('\n\n\n\n\n')
+
+    #Verificacion de que Objeto fue elegido.
+    if potion.type == 'Sanador':
+            pokemon.hp += potion.power
+             #Si la vida es m,ayor a la maxima se le igualara a la maxima.
+            if pokemon.hp > pokemon.hpMax: pokemon.hp = pokemon.hpMax
+            print(f'\t\t\t\t\t  Vida de Pokemon Curada a {pokemon.hp}!!')
+    elif potion.type == 'Stats':
+        if potion.name == 'Ataque X':
+            pokemon.attack += potion.power
+            print('\t\t\t\t\t  Ataque de pokemon Aumentado!!')
+        elif potion.name == 'Ataque Especial X':
+                pokemon.attack += potion.power
+                print('\t\t\t\t\t  Ataque de pokemon Aumentado!!')
+        elif potion.name == 'Defensa X': 
+            pokemon.defense += potion.power
+            print('\t\t\t\t\t  Defensa de pokemon Aumentado!!')
+        elif potion.name == 'Defensa Especial X':
+            pokemon.defense += potion.power
+            print('\t\t\t\t\t  Defensa de pokemon Aumentado!!')
+        elif potion.name == 'Velocidad X': 
+            pokemon.speed += potion.power
+            print('\t\t\t\t\t  Velocidad de pokemon Aumentado!!')
+
+    time.sleep(2)
+    os.system('cls')
