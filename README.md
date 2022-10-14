@@ -34,9 +34,9 @@ realista el daño y la vida de los pokemons.
 
 ## Versiones Anteriores
 
-### [1.0](Versiones/1.0/)
+### [1.1](VersionesAnteriores/1.1/)
 
-### [1.1](Versiones/1.1/)
+### [1.0](VersionesAnteriores/1.0/)
 
 
 ## Proximas Implementaciones
